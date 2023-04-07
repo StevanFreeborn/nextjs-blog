@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import Date from '../components/Date';
 import Layout, { siteTitle } from '../components/Layout';
 import { postsDirectory } from '../lib/constants';
 import { loadPosts } from '../lib/posts';
@@ -35,11 +37,11 @@ export default function Home({ posts }) {
               className={utilStyles.listItem}
               key={id}
             >
-              {title}
+              <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>

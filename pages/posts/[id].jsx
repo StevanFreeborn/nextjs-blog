@@ -3,6 +3,7 @@ import Date from '../../components/Date';
 import Layout from '../../components/Layout';
 import { postsDirectory } from '../../lib/constants.js';
 import { getPostIds, loadPost } from '../../lib/posts';
+import utilStyles from '../../styles/utils.module.css';
 
 export async function getStaticPaths() {
   return {
@@ -25,12 +26,16 @@ export default function Post({ post }) {
       <Head>
         <title>{post.title}</title>
       </Head>
-      {post.title}
-      <br />
-      {post.id}
-      <br />
-      <Date dateString={post.date} />
-      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+
+      <article>
+        <h1 className={utilStyles.headingXl}>{post.title}</h1>
+
+        <div className={utilStyles.lightText}>
+          <Date dateString={post.date} />
+        </div>
+
+        <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+      </article>
     </Layout>
   );
 }
