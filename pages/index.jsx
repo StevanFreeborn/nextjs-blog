@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/Layout';
-import { loadPosts } from '../lib/loadPosts';
+import { postsDirectory } from '../lib/constants';
+import { loadPosts } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
 
 export async function getStaticProps() {
   return {
     props: {
-      posts: loadPosts(),
+      posts: loadPosts(postsDirectory),
     },
   };
 }
