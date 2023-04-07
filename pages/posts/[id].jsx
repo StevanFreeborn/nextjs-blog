@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Layout from '../../components/Layout';
 import { postsDirectory } from '../../lib/constants.js';
 import { getPostIds, loadPost } from '../../lib/posts';
@@ -20,6 +21,9 @@ export async function getStaticProps({ params }) {
 export default function Post({ post }) {
   return (
     <Layout>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
       {post.title}
       <br />
       {post.id}
