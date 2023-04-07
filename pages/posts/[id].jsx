@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      post: loadPost(postsDirectory, `${params.id}.md`),
+      post: await loadPost(postsDirectory, `${params.id}.md`),
     },
   };
 }
@@ -25,6 +25,7 @@ export default function Post({ post }) {
       {post.id}
       <br />
       {post.date}
+      <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
     </Layout>
   );
 }

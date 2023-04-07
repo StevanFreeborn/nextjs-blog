@@ -7,7 +7,7 @@ import utilStyles from '../styles/utils.module.css';
 export async function getStaticProps() {
   return {
     props: {
-      posts: loadPosts(postsDirectory),
+      posts: await loadPosts(postsDirectory),
     },
   };
 }
