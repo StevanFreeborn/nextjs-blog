@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Date from '../../components/Date';
 import Layout from '../../components/Layout';
 import { postsDirectory } from '../../lib/constants.js';
 import { getPostIds, loadPost } from '../../lib/posts';
@@ -28,7 +29,7 @@ export default function Post({ post }) {
       <br />
       {post.id}
       <br />
-      {post.date}
+      <Date dateString={post.date} />
       <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
     </Layout>
   );
