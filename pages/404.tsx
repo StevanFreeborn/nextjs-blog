@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Layout from '../components/Layout.jsx';
+import Layout from '../components/Layout';
 
 export default function Custom404() {
   const [hydrated, setHydrated] = useState<boolean>(false);
