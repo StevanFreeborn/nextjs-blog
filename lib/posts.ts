@@ -9,7 +9,7 @@ import html from 'remark-html';
  * @param {string} fileName
  * @returns {string} The file name without the extension.
  */
-function getFileId(fileName) {
+function getFileId(fileName: string): string {
   return fileName.replace(/\.md$/, '');
 }
 
@@ -17,9 +17,17 @@ function getFileId(fileName) {
  * @function loadPost - Loads a post from the file system.
  * @param {string} postsDirectory - The path to the posts directory.
  * @param {string} fileName - The name of the file to load.
- * @returns {Promise<object>} A post object.
+ * @returns {Promise<{}>} A post object.
  */
-export async function loadPost(postsDirectory, fileName) {
+export async function loadPost(
+  postsDirectory: string,
+  fileName: string
+): Promise<{
+  id: string;
+  contentHtml: string;
+  date: string;
+  title: string;
+}> {
   const id = getFileId(fileName);
   const fullPath = path.join(postsDirectory, fileName);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -30,7 +38,7 @@ export async function loadPost(postsDirectory, fileName) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as { date: string; title: string }),
   };
 }
 
@@ -39,7 +47,9 @@ export async function loadPost(postsDirectory, fileName) {
  * @param {string} postsDirectory - The path to the posts directory.
  * @returns {Promise<Array<object>>} An array of post objects.
  */
-export async function loadPosts(postsDirectory) {
+export async function loadPosts(
+  postsDirectory: string
+): Promise<Array<object>> {
   const fileNames = fs.readdirSync(postsDirectory);
   const posts = await Promise.all(
     fileNames.map(async fileName => await loadPost(postsDirectory, fileName))

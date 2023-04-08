@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Date from '../../components/Date';
 import Layout from '../../components/Layout';
-import { postsDirectory } from '../../lib/constants.js';
+import { postsDirectory } from '../../lib/constants';
 import { getPostIds, loadPost } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.css';
 
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: { id: string } }) {
   return {
     props: {
       post: await loadPost(postsDirectory, `${params.id}.md`),
@@ -20,7 +20,15 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function Post({ post }) {
+export default function Post({
+  post,
+}: {
+  post: {
+    title: string;
+    date: string;
+    contentHtml: string;
+  };
+}) {
   return (
     <Layout>
       <Head>

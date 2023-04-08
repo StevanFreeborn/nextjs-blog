@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout.jsx';
 
 export default function Custom404() {
-  const [hydrated, setHydrated] = useState(false);
+  const [hydrated, setHydrated] = useState<boolean>(false);
 
   useEffect(() => {
     setHydrated(true);
@@ -12,7 +12,7 @@ export default function Custom404() {
     return null;
   }
 
-  const jokes = [
+  const jokes: Array<string> = [
     "But don't worry, you can always try turning it off and on again.",
     'Oops! Looks like we lost this page. But if you keep looking, you might find Waldo instead!',
     "Sorry, this page doesn't exist. But have you tried asking the Magic 8-Ball for help?",

@@ -1,13 +1,20 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 import styles from '../styles/Layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 
 const name = 'Stevan Freeborn';
 export const siteTitle = "Stevan Freeborn's Blog";
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home,
+}: {
+  children: ReactNode;
+  home?: boolean;
+}) {
   return (
     <div className={styles.container}>
       <Head>
